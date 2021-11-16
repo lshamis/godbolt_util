@@ -14,9 +14,12 @@ std::string cat(Arg&&... arg) {
 }
 
 template <typename Container>
-std::string join(Container c) {
+std::string join(Container c, std::string del = "") {
   std::ostringstream ss;
   for (auto&& v : c) {
+    if (&v != &*std::begin(c)) {
+      ss << del;
+    }
     ss << v;
   }
   return ss.str();
